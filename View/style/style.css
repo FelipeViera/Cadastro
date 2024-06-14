@@ -4,24 +4,31 @@ main {
     place-items: center;
 }
 
+
 #botoes{
     display: grid;
     place-items: center;
-    height: 40vh;
+    height: 60vh;
     width: 20vw;
     background-color: rgb(56, 56, 56);
-    border-radius: 25px;
+    border-radius: 20px;
     
+}
+
+h1{
+    color:white;
 }
 
 .botao{
     background-color: transparent;
     border-radius: 5px;
-    
+    color:white;
 }
 
 button {
     border-radius: 5px;
     background-color: rgb(64, 151, 244);
     color: white;
+    height: 40px;
+    font-size: 20pt;
 }
