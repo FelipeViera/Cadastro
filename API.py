@@ -10,7 +10,7 @@ def homepage():
 def login():
     senha = request.json['senha']
 
-    if (senha == "felipe"):
+    if (senha == 10):
         resposta = "Aceito"
     else:
         resposta = "Negado"

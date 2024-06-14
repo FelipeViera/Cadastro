@@ -4,7 +4,7 @@ Seguinte, o primeiro objetivo é
 criar um API em python  que 
 recebe um email e uma senha
 e testa para ver se o login 
-está concluído.
+está concluído. (x)
 
 </p>
 
@@ -12,6 +12,7 @@ está concluído.
 O segundo objetivo é criar uma
 interface com HTML, CSS e JS que 
 consuma esta api.
+-Estilizar a tela de login
 </p>
 
 <p>
