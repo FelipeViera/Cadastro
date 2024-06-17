@@ -1,6 +1,6 @@
 import requests
 
-link = "http://127.0.0.1:5000/login"
+link = "http://localhost:5000/login"
 
 valor = int(input('digite: '))
 data = {"senha": valor}

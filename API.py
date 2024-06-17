@@ -1,21 +1,28 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
+
 
 @app.route('/')
 def homepage():
     return ""
 
-@app.route('/login', methods=['POST'])
+
+@app.route('/login', methods=['POST', 'OPTIONS'])
 def login():
-    senha = request.json['senha']
-
-    if (senha == 10):
-        resposta = "Aceito"
+    if request.method == 'OPTIONS':
+        response = app.make_default_options_response()
     else:
-        resposta = "Negado"
+        senha = request.json['senha']
+        if senha == "10":
+            resposta = "Aceito"
+        else:
+            resposta = "Negado"
+        response = jsonify({'resultado': resposta})
 
-    response = {'resultado': resposta}
-    return jsonify(response), 200
+    return response, 200
+
 
 app.run(host='0.0.0.0')
