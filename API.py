@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+from Classes import Filtro
 import mysql.connector
 
 
@@ -28,23 +29,16 @@ def login():
         cursor.execute('SELECT senha from pessoas where email = %s', (email,))
 
         #Serve para filtrar o dado consultado do database
-        simplificando = str(cursor.fetchone())
-        simplificando = simplificando.replace('(', '')
-        simplificando = simplificando.replace(')', '')
-        simplificando = simplificando.replace(',', '')
-        simplificando = simplificando.replace("'", '')
-        simplificando = simplificando.replace("'", '')
-        verificando = simplificando
+        resposta_consulta = str(cursor.fetchone())
+        filtro1 = Filtro()
+        filtro1.Simplificar(resposta_consulta)
+        verificando = filtro1.valor
 
         if str(senha) == verificando:
             cursor.execute('SELECT nome from pessoas where email = %s', (email,))
-            simplificando = str(cursor.fetchone())
-            simplificando = simplificando.replace('(', '')
-            simplificando = simplificando.replace(')', '')
-            simplificando = simplificando.replace(',', '')
-            simplificando = simplificando.replace("'", '')
-            simplificando = simplificando.replace("'", '')
-            resposta = simplificando
+            resposta_consulta = str(cursor.fetchone())
+            filtro1.Simplificar(resposta_consulta)
+            resposta = filtro1.valor
 
         else:
             resposta = "Negado"
