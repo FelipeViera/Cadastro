@@ -9,6 +9,12 @@ está concluído. (x)
 </p>
 
 <p>
+Criar uma classe que realize a operação de filtrar a consulta
+
+</p>
+
+
+<p>
 O segundo objetivo é criar uma
 interface com HTML, CSS e JS que 
 consuma esta api.

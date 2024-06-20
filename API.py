@@ -22,16 +22,30 @@ def login():
         if conexao.is_connected():
             cursor = conexao.cursor()
 
-
-
-
         senha = request.json['senha']
         email = request.json['email']
 
         cursor.execute('SELECT senha from pessoas where email = %s', (email,))
 
-        if senha == str(cursor.fetchone()):
-            resposta = "Aceito"
+        #Serve para filtrar o dado consultado do database
+        simplificando = str(cursor.fetchone())
+        simplificando = simplificando.replace('(', '')
+        simplificando = simplificando.replace(')', '')
+        simplificando = simplificando.replace(',', '')
+        simplificando = simplificando.replace("'", '')
+        simplificando = simplificando.replace("'", '')
+        verificando = simplificando
+
+        if str(senha) == verificando:
+            cursor.execute('SELECT nome from pessoas where email = %s', (email,))
+            simplificando = str(cursor.fetchone())
+            simplificando = simplificando.replace('(', '')
+            simplificando = simplificando.replace(')', '')
+            simplificando = simplificando.replace(',', '')
+            simplificando = simplificando.replace("'", '')
+            simplificando = simplificando.replace("'", '')
+            resposta = simplificando
+
         else:
             resposta = "Negado"
 
