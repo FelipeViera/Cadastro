@@ -20,3 +20,8 @@ Terceiro é criar um database
 para que se possa criar perfis 
 e adicioná-los.
 </p>
+
+<p>
+Criar um algoritimo de verificação de e-mail 
+e outro de verificação de senha forte.
+</p>
