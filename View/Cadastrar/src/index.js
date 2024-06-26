@@ -1,16 +1,30 @@
 function Cadastrar(){
-    var email = document.getElementsByTagName('input')[0]
-    var nome = document.getElementsByTagName('input')[1]
-    var idade = document.getElementsByTagName('input')[2]
-    var senha = document.getElementsByTagName('input')[3]
+  var email = document.getElementsByTagName('input')[0].value
+  var nome = document.getElementsByTagName('input')[1].value
+  var nascimento = document.getElementsByTagName('input')[2].value
+  var senha = document.getElementsByTagName('input')[3].value
+  
 
-    var c_email = email.value.length
-    var c_senha = senha.value.length
-    var c_nome = nome.value.length
-    var c_idade = idade.value.length
-    if (c_email > 0 && c_senha > 0 && c_nome > 0 && Number(idade.value) > 0){
-        //Converter a idade em número
-        alert('KO')
-    }
+  if (email.length > 0 && nome.length > 0 && nascimento.length > 0 && senha.length > 0){
+    Solicitacao(String(email), String(nome), String(nascimento), String(senha))
+  }
+
+}
+
+async function Solicitacao(valor1, valor2, valor3, valor4) {
+  //Realizar a solicitação
+  fetch('http://localhost:5000/cadastro', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email: valor1, nome: valor2, nascimento: valor3, senha: valor4}), // Substitua o valor conforme necessário
+    })
     
+    .then(response => response.json())
+    .then(data => {
+      console.log(data), alert(data.resultado)
+  })
+    .catch((error) => console.error('Erro:', error));
+   
 }

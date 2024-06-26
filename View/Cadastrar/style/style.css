@@ -27,6 +27,10 @@ h1{
     color:white;
 }
 
+#datas{
+    width: 12vw;
+}
+
 button {
     border-radius: 5px;
     background-color: rgb(64, 151, 244);

@@ -11,7 +11,7 @@ function Logar(){
 
 async function Solicitacao(valor, valor2) {
     //Realizar a solicitação
-    fetch('http://localhost:5000/login', {
+    fetch('http://localhost:5000/cadastro', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
