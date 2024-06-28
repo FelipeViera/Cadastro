@@ -11,7 +11,14 @@ function Logar(){
 
 async function Solicitacao(valor, valor2) {
     //Realizar a solicitação
-    fetch('http://localhost:5000/cadastro', {
+    link = 'http://localhost:5000/login'
+
+    var login = {
+      email: valor2,
+      senha: valor,
+    }
+
+    fetch('http://localhost:5000/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -21,8 +28,20 @@ async function Solicitacao(valor, valor2) {
       
       .then(response => response.json())
       .then(data => {
-        console.log(data), alert(data.resultado)
+        console.log(data.resultado), Salvar(data, login)
     })
       .catch((error) => console.error('Erro:', error));
      
+  }
+
+function Salvar(data, login){
+    if (String(data.resultado) == 'ACEITO'){
+      localStorage.setItem("login", JSON.stringify(login))
+      window.location.href = "http://localhost:5500/View/Perfil/index.html"
+    }
+    else{
+      alert('login Inválido')
+    }
+    
+
   }

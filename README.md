@@ -15,7 +15,7 @@ cadastro eficiente de usuários.
 
 <ul>
 <li> Cadastrar usuários</li>
-<li> Logar em sua conta (em desenvolvimento) </li>
+<li> Logar em sua conta </li>
 <li> Editar informações cadastrais (em desenvolvimento) </li>
 </ul>
 

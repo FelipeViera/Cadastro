@@ -23,8 +23,19 @@ async function Solicitacao(valor1, valor2, valor3, valor4) {
     
     .then(response => response.json())
     .then(data => {
-      console.log(data), alert(data.resultado)
+      console.log(data), next_pagina(data)
   })
     .catch((error) => console.error('Erro:', error));
    
+}
+
+function next_pagina(data){
+  if (String(data.resultado) == 'CADASTRADO'){
+    window.location.href = "http://localhost:5500/View/Logar/index.html"
+  }
+  else{
+    alert('Tente outro e-mail')
+  }
+  
+
 }

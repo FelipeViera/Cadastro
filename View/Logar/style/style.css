@@ -17,6 +17,7 @@ main {
 
 h1{
     color:white;
+    
 }
 
 .botao{
@@ -31,4 +32,9 @@ button {
     color: white;
     height: 40px;
     font-size: 20pt;
+}
+
+a{
+    color:white; 
+    text-decoration: none;
 }

@@ -1,0 +1,26 @@
+main {
+    margin-top: 25vh;
+    display: grid;
+    place-items: center;
+}
+
+
+#Perfil{
+    display: grid;
+    place-items: center;
+    width: 20vw;
+    text-align: center;
+    background-color: rgb(56, 56, 56);
+    border-radius: 20px;
+    
+}
+
+h1{
+    color:white;
+}
+h3{
+    margin-top: 0px;
+    color:white;
+}
+
+

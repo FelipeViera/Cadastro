@@ -36,10 +36,11 @@ def login():
         verificando = filtro1.valor
 
         if str(senha) == verificando:
-            cursor.execute('SELECT nome from pessoas where email = %s', (email,))
-            resposta_consulta = str(cursor.fetchone())
-            filtro1.Simplificar(resposta_consulta)
-            resposta = filtro1.valor
+            #cursor.execute('SELECT nome from pessoas where email = %s', (email,))
+            #resposta_consulta = str(cursor.fetchone())
+            #filtro1.Simplificar(resposta_consulta)
+            #resposta = filtro1.valor
+            resposta = "ACEITO"
 
         else:
             resposta = "Negado"
@@ -47,6 +48,52 @@ def login():
         response = jsonify({'resultado': resposta})
 
     return response, 200
+
+@app.route('/perfil', methods=['POST'])
+
+def perfil():
+    if request.method == 'OPTIONS':
+        response = app.make_default_options_response()
+    else:
+
+        conexao = mysql.connector.connect(host='localhost', database='cadastro', user='root', password='')
+        if conexao.is_connected():
+            cursor = conexao.cursor()
+
+    senha = request.json['senha']
+    email = request.json['email']
+
+    cursor.execute('SELECT senha from pessoas where email = %s', (email,))
+
+    # Serve para filtrar o dado consultado do database
+    resposta_consulta = str(cursor.fetchone())
+    filtro1 = Filtro()
+    filtro1.Simplificar(resposta_consulta)
+    verificando = filtro1.valor
+
+    if str(senha) == verificando:
+        cursor.execute('SELECT nome from pessoas where email = %s', (email,))
+        resposta_consulta = str(cursor.fetchone())
+        filtro1.Simplificar(resposta_consulta)
+        nome = filtro1.valor
+
+        cursor.execute('SELECT data_nascimento from pessoas where email = %s', (email,))
+        resposta_consulta = str(cursor.fetchone())
+        filtro1.Simplificar(resposta_consulta)
+        data_nasc = filtro1.valor
+
+        data_nasc = str(data_nasc.replace('datetime.date', ''))
+        data_nasc = data_nasc.replace(' ', '-')
+
+        resposta = "Aceito"
+
+
+    else:
+        resposta = "Negado"
+
+    response = jsonify({'nome': nome, 'data_nasc': data_nasc, 'resultado': resposta})
+    return response, 200
+
 
 @app.route('/cadastro', methods=['POST'])
 
