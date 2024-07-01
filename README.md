@@ -1,4 +1,6 @@
 <h1> Cadastro </h1>
+
+<img src="Capa.jpg">
 <h2> Descrição </h2>
 <p>
 
@@ -19,14 +21,40 @@ cadastro eficiente de usuários.
 <li> Editar informações cadastrais (em desenvolvimento) </li>
 </ul>
 
+<h2> Diagrama UML </h2>
+<img src="Diagrama.png">
+
 <h2> Acesso ao Projeto</h2>
 
+<ol>
+
+<li>
+Deve-se habilitar um servidor MySQL. O XAMPP é uma
+boa ferramenta.
+</li>
+
+<li>
+Importe a estrutura de banco de dados dentro do MySQL.
+A estrutura pode ser encontrada no seguinte caminho:
+Model/dump
+</li>
+
+<li>
+Execute o arquivo 'Controller/API.py'. Criando assim, outro servidor
+local. Pycharm pode ser utilizado para isto.
+</li>
+
+<li>
+Execute o arquivo 'View/Perfil/index.html'
+</li>
+</ol>
+
 <p>
-
-Deve-se ter habilitado um servidor MySQL e um servidor executando
-o arquivo 'API.py'. Com ambos funcionando, basta entrar na pasta
-Cadastrar e abrir o arquivo 'index.html'.
-
+OBS: Lembre-se, edite o caminho dos arquivos de acordo com sua
+máquina. Dentro do arquivo 'Controller/API.py' mude o usuário e a senha
+do servidor MySQL de acordo com o seu. Vale lembrar, que seria bem
+usual habilitar o live server para abrir os arquivos dentro da pasta
+'View'.
 </p>
 
 <h2> Técnicas e Tecnologias utilizadas </h2>

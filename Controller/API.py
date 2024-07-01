@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from Classes import Filtro
+from Model.Classes  import Filtro
 import mysql.connector
 from datetime import datetime
 
