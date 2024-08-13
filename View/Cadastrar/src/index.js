@@ -31,7 +31,7 @@ async function Solicitacao(valor1, valor2, valor3, valor4) {
 
 function next_pagina(data){
   if (String(data.resultado) == 'CADASTRADO'){
-    window.location.href = "http://localhost:5500/View/Logar/index.html"
+    window.location.href = "./../../View/Logar/index.html"
   }
   else{
     alert('Tente outro e-mail')

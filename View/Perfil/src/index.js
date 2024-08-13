@@ -5,7 +5,7 @@ try{
   Solicitacao(loginObject)
 }
 catch(error){
-   window.location.href = "http://localhost:5500/View/Logar/index.html"
+   window.location.href ="./../../View/Logar/index.html"
 }
 
 
@@ -32,7 +32,7 @@ async function Solicitacao(loginObject) {
 
 function Verificar(valor, loginObject){
     if (String(valor) != "ACEITO"){
-      window.location.href = "http://localhost:5500/View/Logar/index.html"
+      window.location.href = "./../../View/Logar/index.html"
     }
     else{
       Solicitar_dados(loginObject)

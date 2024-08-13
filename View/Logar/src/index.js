@@ -37,7 +37,7 @@ async function Solicitacao(valor, valor2) {
 function Salvar(data, login){
     if (String(data.resultado) == 'ACEITO'){
       localStorage.setItem("login", JSON.stringify(login))
-      window.location.href = "http://localhost:5500/View/Perfil/index.html"
+      window.location.href = "./../../View/Perfil/index.html"
     }
     else{
       alert('login Inválido')
