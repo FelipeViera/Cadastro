@@ -55,7 +55,7 @@ async function Solicitar_dados(loginObject) {
     .then(data => {
       console.log(data), Exibir(data, loginObject)
   })
-    .catch((error) => console.error('Erro:', error));
+    .catch((error) => console.error('Erro:', error)), alert("Servidor fora do Ar");
    
 }
 

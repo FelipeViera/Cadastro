@@ -3,11 +3,18 @@ function Cadastrar(){
   var nome = document.getElementsByTagName('input')[1].value
   var nascimento = document.getElementsByTagName('input')[2].value
   var senha = document.getElementsByTagName('input')[3].value
+  var senha_02 = document.getElementsByTagName('input')[4].value
   
-
-  if (email.length > 0 && nome.length > 0 && nascimento.length > 0 && senha.length > 0){
-    Solicitacao(String(email), String(nome), String(nascimento), String(senha))
+  if (senha == senha_02){
+    if (email.length > 0 && nome.length > 0 && nascimento.length > 0 && senha.length > 0 && senha == senha_02){
+      Solicitacao(String(email), String(nome), String(nascimento), String(senha))
+    }
   }
+  else{
+    alert("Deve-se preencher a mesma senha")
+  }
+
+  
 
 }
 
@@ -25,7 +32,7 @@ async function Solicitacao(valor1, valor2, valor3, valor4) {
     .then(data => {
       console.log(data), next_pagina(data)
   })
-    .catch((error) => console.error('Erro:', error));
+    .catch((error) => console.error('Erro:', error)), alert("Servidor fora do Ar");
    
 }
 
