@@ -41,7 +41,12 @@ function Salvar(data, login){
       window.location.href = "./../../View/Perfil/index.html"
     }
     else{
-      alert('login Inválido')
+
+      if (String(data.resultado) == 'NEGADO'){
+        alert('login Inválido')
+      }
+      
+      
     }
     
 

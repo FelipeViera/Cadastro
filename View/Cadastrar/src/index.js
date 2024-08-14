@@ -1,19 +1,54 @@
 function Cadastrar(){
-  var email = document.getElementsByTagName('input')[0].value
-  var nome = document.getElementsByTagName('input')[1].value
-  var nascimento = document.getElementsByTagName('input')[2].value
-  var senha = document.getElementsByTagName('input')[3].value
-  var senha_02 = document.getElementsByTagName('input')[4].value
+  var email = document.getElementsByTagName('input')[0]
+  var nome = document.getElementsByTagName('input')[1]
+  var nascimento = document.getElementsByTagName('input')[2]
+  var senha = document.getElementsByTagName('input')[3]
+  var senha_02 = document.getElementsByTagName('input')[4]
+
+  //Quantidade de caixas preenchidas corretamente
+  let form = [false, false, false]
   
-  if (senha == senha_02){
-    if (email.length > 0 && nome.length > 0 && nascimento.length > 0 && senha.length > 0 && senha == senha_02){
-      Solicitacao(String(email), String(nome), String(nascimento), String(senha))
-    }
-  }
+  if (email.value.length == 0){
+    email.style.borderColor = "RED"
+    form[0] = false
+  } 
   else{
-    alert("Deve-se preencher a mesma senha")
+    email.style.borderColor = "GRAY"
+    form[0] = true
   }
 
+  if (nome.value.length == 0){
+    nome.style.borderColor = "RED"
+    form[1] = false
+  }
+  else{
+    nome.style.borderColor = "GRAY"
+    form[1] = true
+  }
+
+  if (nascimento.value.length == 0 ){
+    nascimento.style.borderColor = "RED"
+    form[2] = false
+  }
+
+  else{
+    nascimento.style.borderColor = "GRAY"
+    form[2] = true
+  }
+
+  // No minimo 5 caracteres para a senha
+  if (senha.value == senha_02.value && senha.value.length > 5){
+    senha.style.borderColor = "GRAY"
+    senha_02.style.borderColor = "GRAY"
+    if (form[0] && form[1] && form[2]){
+      Solicitacao(String(email.value), String(nome.value), String(nascimento.value), String(senha.value))
+    }
+
+  }
+  else{
+    senha.style.borderColor = "RED"
+    senha_02.style.borderColor = "RED"
+ }
   
 
 }

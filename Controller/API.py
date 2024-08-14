@@ -20,30 +20,35 @@ def login():
         response = app.make_default_options_response()
     else:
 
-        conexao = mysql.connector.connect(host='localhost', database='cadastro', user='root', password='')
-        if conexao.is_connected():
-            cursor = conexao.cursor()
+        try:
+            conexao = mysql.connector.connect(host='localhost', database='cadastro', user='root', password='')
+            if conexao.is_connected():
+                cursor = conexao.cursor()
 
-        senha = request.json['senha']
-        email = request.json['email']
+            senha = request.json['senha']
+            email = request.json['email']
 
-        cursor.execute('SELECT senha from pessoas where email = %s', (email,))
+            cursor.execute('SELECT senha from pessoas where email = %s', (email,))
 
-        #Serve para filtrar o dado consultado do database
-        resposta_consulta = str(cursor.fetchone())
-        filtro1 = Filtro()
-        filtro1.Simplificar(resposta_consulta)
-        verificando = filtro1.valor
+            # Serve para filtrar o dado consultado do database
+            resposta_consulta = str(cursor.fetchone())
+            filtro1 = Filtro()
+            filtro1.Simplificar(resposta_consulta)
+            verificando = filtro1.valor
 
-        if str(senha) == verificando:
-            #cursor.execute('SELECT nome from pessoas where email = %s', (email,))
-            #resposta_consulta = str(cursor.fetchone())
-            #filtro1.Simplificar(resposta_consulta)
-            #resposta = filtro1.valor
-            resposta = "ACEITO"
+            if str(senha) == verificando:
+                # cursor.execute('SELECT nome from pessoas where email = %s', (email,))
+                # resposta_consulta = str(cursor.fetchone())
+                # filtro1.Simplificar(resposta_consulta)
+                # resposta = filtro1.valor
+                resposta = "ACEITO"
 
-        else:
-            resposta = "Negado"
+            else:
+                resposta = "NEGADO"
+
+        except:
+            resposta = "Banco de Dados fora do Ar"
+
 
         response = jsonify({'resultado': resposta})
 
@@ -56,40 +61,47 @@ def perfil():
         response = app.make_default_options_response()
     else:
 
-        conexao = mysql.connector.connect(host='localhost', database='cadastro', user='root', password='')
-        if conexao.is_connected():
-            cursor = conexao.cursor()
+        try:
+            conexao = mysql.connector.connect(host='localhost', database='cadastro', user='root', password='')
+            if conexao.is_connected():
+                cursor = conexao.cursor()
+            senha = request.json['senha']
+            email = request.json['email']
 
-    senha = request.json['senha']
-    email = request.json['email']
+            cursor.execute('SELECT senha from pessoas where email = %s', (email,))
 
-    cursor.execute('SELECT senha from pessoas where email = %s', (email,))
+            # Serve para filtrar o dado consultado do database
+            resposta_consulta = str(cursor.fetchone())
+            filtro1 = Filtro()
+            filtro1.Simplificar(resposta_consulta)
+            verificando = filtro1.valor
 
-    # Serve para filtrar o dado consultado do database
-    resposta_consulta = str(cursor.fetchone())
-    filtro1 = Filtro()
-    filtro1.Simplificar(resposta_consulta)
-    verificando = filtro1.valor
+            if str(senha) == verificando:
+                cursor.execute('SELECT nome from pessoas where email = %s', (email,))
+                resposta_consulta = str(cursor.fetchone())
+                filtro1.Simplificar(resposta_consulta)
+                nome = filtro1.valor
 
-    if str(senha) == verificando:
-        cursor.execute('SELECT nome from pessoas where email = %s', (email,))
-        resposta_consulta = str(cursor.fetchone())
-        filtro1.Simplificar(resposta_consulta)
-        nome = filtro1.valor
+                cursor.execute('SELECT data_nascimento from pessoas where email = %s', (email,))
+                resposta_consulta = str(cursor.fetchone())
+                filtro1.Simplificar(resposta_consulta)
+                data_nasc = filtro1.valor
 
-        cursor.execute('SELECT data_nascimento from pessoas where email = %s', (email,))
-        resposta_consulta = str(cursor.fetchone())
-        filtro1.Simplificar(resposta_consulta)
-        data_nasc = filtro1.valor
+                data_nasc = str(data_nasc.replace('datetime.date', ''))
+                data_nasc = data_nasc.replace(' ', '-')
 
-        data_nasc = str(data_nasc.replace('datetime.date', ''))
-        data_nasc = data_nasc.replace(' ', '-')
-
-        resposta = "Aceito"
+                resposta = "Aceito"
 
 
-    else:
-        resposta = "Negado"
+            else:
+                resposta = "Negado"
+
+        except:
+            resposta = "Fora do ar"
+
+
+
+
 
     response = jsonify({'nome': nome, 'data_nasc': data_nasc, 'resultado': resposta})
     return response, 200
@@ -103,29 +115,33 @@ def cadastro():
         response = app.make_default_options_response()
     else:
 
-        conexao = mysql.connector.connect(host='localhost', database='cadastro', user='root', password='')
-        if conexao.is_connected():
-            cursor = conexao.cursor()
-
         try:
-            senha = request.json['senha']
-            senha = str(senha)
-            email = request.json['email']
-            email = str(email)
-            nome = request.json['nome']
-            nome = str(nome)
-            data_nascimento = request.json['nascimento']
-            data_nascimento = datetime.strptime(data_nascimento, "%Y-%m-%d")
-
+            conexao = mysql.connector.connect(host='localhost', database='cadastro', user='root', password='')
+            if conexao.is_connected():
+                cursor = conexao.cursor()
 
             try:
-                cursor.execute('INSERT INTO pessoas(email, nome, data_nascimento, senha) VALUES (%s, %s, %s, %s);',(email, nome, data_nascimento, senha))
-                conexao.commit()
-                resposta = "CADASTRADO"
+                senha = request.json['senha']
+                senha = str(senha)
+                email = request.json['email']
+                email = str(email)
+                nome = request.json['nome']
+                nome = str(nome)
+                data_nascimento = request.json['nascimento']
+                data_nascimento = datetime.strptime(data_nascimento, "%Y-%m-%d")
+
+                try:
+                    cursor.execute('INSERT INTO pessoas(email, nome, data_nascimento, senha) VALUES (%s, %s, %s, %s);',
+                                   (email, nome, data_nascimento, senha))
+                    conexao.commit()
+                    resposta = "CADASTRADO"
+                except Exception as er:
+                    resposta = "Erro de banco de dados"
             except Exception as er:
-                resposta = "Erro de banco de dados"
-        except Exception as er:
-            resposta = "Erro json"
+                resposta = "Erro json"
+        except:
+            resposta = "fora do ar"
+
 
         response = jsonify({'resultado': resposta})
 
