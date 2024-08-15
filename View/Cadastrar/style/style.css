@@ -28,7 +28,7 @@ h1{
 }
 
 #datas{
-    width: 12vw;
+    width: 13vw;
 }
 
 button {
@@ -37,4 +37,9 @@ button {
     color: white;
     height: 40px;
     font-size: 20pt;
+}
+a{
+    font-size: 10pt;
+    color: rgb(233, 42, 42);
+
 }

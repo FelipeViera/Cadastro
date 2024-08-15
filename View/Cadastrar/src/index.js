@@ -5,6 +5,16 @@ function Cadastrar(){
   var senha = document.getElementsByTagName('input')[3]
   var senha_02 = document.getElementsByTagName('input')[4]
 
+
+  //
+  var caracteres = String(nascimento.value)
+  var data = ""
+  for (i=0; i < 4; i++){
+    data += caracteres[i]
+  }
+  //alert(data)
+  data = Number.parseInt(data)
+
   //Quantidade de caixas preenchidas corretamente
   let form = [false, false, false]
   
@@ -26,7 +36,8 @@ function Cadastrar(){
     form[1] = true
   }
 
-  if (nascimento.value.length == 0 ){
+
+  if (nascimento.value.length == 0 || data <= 1900 || data >= 2010){
     nascimento.style.borderColor = "RED"
     form[2] = false
   }
@@ -36,11 +47,16 @@ function Cadastrar(){
     form[2] = true
   }
 
+
   // No minimo 5 caracteres para a senha
   if (senha.value == senha_02.value && senha.value.length > 5){
     senha.style.borderColor = "GRAY"
     senha_02.style.borderColor = "GRAY"
-    if (form[0] && form[1] && form[2]){
+
+    
+
+
+    if (form[0] && form[1] && form[2] ){
       Solicitacao(String(email.value), String(nome.value), String(nascimento.value), String(senha.value))
     }
 

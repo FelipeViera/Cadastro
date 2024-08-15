@@ -1,6 +1,6 @@
--Adicionar responsividade
+-----> Adicionar responsividade
 -Adicionar verificação de e-mail
-----> Impossibilitar o cadastro em datas maiores que 2023
+-Impossibilitar o cadastro em datas maiores que 2023 (x)
 -Editar e excluir perfil
 -Utilizar melhores ferramentas para login de sessão
 -Organizar os arquivos nas pastas destinadas (x)
