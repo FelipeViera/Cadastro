@@ -1,6 +1,7 @@
 -----> Adicionar responsividade
 -Adicionar verificação de e-mail
 -Impossibilitar o cadastro em datas maiores que 2023 (x)
+-Criar algoritmo que verifica a idade da pessoa de acordo com a data atual 
 -Editar e excluir perfil
 -Utilizar melhores ferramentas para login de sessão
 -Organizar os arquivos nas pastas destinadas (x)

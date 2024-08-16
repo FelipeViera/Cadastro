@@ -28,7 +28,8 @@ h1{
 }
 
 #datas{
-    width: 13vw;
+    width: 29vh;
+    font-size: 12pt;
 }
 
 button {
@@ -38,8 +39,20 @@ button {
     height: 40px;
     font-size: 20pt;
 }
-a{
-    font-size: 10pt;
-    color: rgb(233, 42, 42);
 
+@media screen and (max-width: 1000px){
+
+    #botoes{
+        display: grid;
+        place-items: center;
+        height: 70vh;
+        width: 40vh;
+        background-color: rgb(56, 56, 56);
+        border-radius: 20px;
+        
+    }
+    
+    #datas{
+        width: 30vh;
+    }
 }
