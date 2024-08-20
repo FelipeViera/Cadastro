@@ -4,6 +4,7 @@ function Cadastrar(){
   var nascimento = document.getElementsByTagName('input')[2]
   var senha = document.getElementsByTagName('input')[3]
   var senha_02 = document.getElementsByTagName('input')[4]
+  const data_atual = new Date()
 
 
   //
@@ -37,9 +38,10 @@ function Cadastrar(){
   }
 
 
-  if (nascimento.value.length == 0 || data <= 1900 || data >= 2010){
+  if (nascimento.value.length == 0 || data <= 1900 || data > (data_atual.getFullYear() - 18)){
     nascimento.style.borderColor = "RED"
     form[2] = false
+    
   }
 
   else{
@@ -83,7 +85,7 @@ async function Solicitacao(valor1, valor2, valor3, valor4) {
     .then(data => {
       console.log(data), next_pagina(data)
   })
-    .catch((error) => console.error('Erro:', error)), alert("Servidor fora do Ar");
+    .catch((error) => console.error('Erro:', error));
    
 }
 

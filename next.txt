@@ -1,10 +1,8 @@
------> Adicionar responsividade
 -Adicionar verificação de e-mail
--Impossibilitar o cadastro em datas maiores que 2023 (x)
--Criar algoritmo que verifica a idade da pessoa de acordo com a data atual 
+(x) Criar algoritmo que verifica a idade da pessoa de acordo com a data atual 
+--->Melhor o teste de falha de conexão no servidor
+--> Por algum motivo, mesmo dando certo a conexão de API,
+o front-end entende como se tivesse ocorrido algum erro no servidor
+
 -Editar e excluir perfil
 -Utilizar melhores ferramentas para login de sessão
--Organizar os arquivos nas pastas destinadas (x)
--Adicionar o "*" na digitação da senha (x)
--Adicionar recurso para mostrar onde falta adicionar informações(x)
--Colocar uma mensagem para quando o servidor estiver fora do ar (x)

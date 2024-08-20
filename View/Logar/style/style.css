@@ -38,3 +38,20 @@ a{
     color:white; 
     text-decoration: none;
 }
+
+@media screen and (max-width: 1000px){
+
+    #botoes{
+        display: grid;
+        place-items: center;
+        height: 70vh;
+        width: 40vh;
+        background-color: rgb(56, 56, 56);
+        border-radius: 20px;
+        
+    }
+    
+    #datas{
+        width: 30vh;
+    }
+}

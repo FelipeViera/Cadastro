@@ -3,6 +3,7 @@ from flask_cors import CORS
 from Model.Classes  import Filtro
 import mysql.connector
 from datetime import datetime
+from datetime import date
 
 
 app = Flask(__name__)
@@ -62,6 +63,7 @@ def perfil():
     else:
 
         try:
+
             conexao = mysql.connector.connect(host='localhost', database='cadastro', user='root', password='')
             if conexao.is_connected():
                 cursor = conexao.cursor()
@@ -117,10 +119,11 @@ def cadastro():
 
         try:
             conexao = mysql.connector.connect(host='localhost', database='cadastro', user='root', password='')
-            if conexao.is_connected():
-                cursor = conexao.cursor()
+
 
             try:
+                resposta = "NEGADO"
+                cursor = conexao.cursor()
                 senha = request.json['senha']
                 senha = str(senha)
                 email = request.json['email']
@@ -128,19 +131,35 @@ def cadastro():
                 nome = request.json['nome']
                 nome = str(nome)
                 data_nascimento = request.json['nascimento']
-                data_nascimento = datetime.strptime(data_nascimento, "%Y-%m-%d")
+                caracteres = str(data_nascimento)
+                ano = ''
+                i = 0
+                data_atual = str(date.today())
+                data_atual = data_atual.replace("-", " ")
+                data_atual = data_atual.split()
+                while i <= 3:
+                    ano += caracteres[i]
+                    i += 1
 
-                try:
-                    cursor.execute('INSERT INTO pessoas(email, nome, data_nascimento, senha) VALUES (%s, %s, %s, %s);',
-                                   (email, nome, data_nascimento, senha))
-                    conexao.commit()
-                    resposta = "CADASTRADO"
-                except Exception as er:
-                    resposta = "Erro de banco de dados"
+                if ((int(ano)) < (int(data_atual[0])) - 18 ):
+                    data_nascimento = datetime.strptime(data_nascimento, "%Y-%m-%d")
+                    try:
+                        cursor.execute(
+                            'INSERT INTO pessoas(email, nome, data_nascimento, senha) VALUES (%s, %s, %s, %s);',
+                            (email, nome, data_nascimento, senha))
+
+                        conexao.commit()
+                        resposta = "CADASTRADO"
+
+
+                    except Exception as er:
+                        print("Não cadastrado")
+
+
             except Exception as er:
-                resposta = "Erro json"
+                print("Erro json")
         except:
-            resposta = "fora do ar"
+            print("fora do ar")
 
 
         response = jsonify({'resultado': resposta})

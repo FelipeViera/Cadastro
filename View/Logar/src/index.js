@@ -30,7 +30,7 @@ async function Solicitacao(valor, valor2) {
       .then(data => {
         console.log(data.resultado), Salvar(data, login)
     })
-      .catch((error) => console.error('Erro:', error)), alert("Servidor fora do Ar");
+      .catch((error) => console.error('Erro:', error));
       
      
   }
