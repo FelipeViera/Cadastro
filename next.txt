@@ -5,4 +5,6 @@
 o front-end entende como se tivesse ocorrido algum erro no servidor
 
 -Editar e excluir perfil
+-Permitir que a pessoa coloque um arquivo com sua foto
 -Utilizar melhores ferramentas para login de sessão
+

@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from Model.Classes  import Filtro
+from Model.Classe_principal import ClassePrincipal
 import mysql.connector
 from datetime import datetime
 from datetime import date
@@ -20,28 +20,18 @@ def login():
     if request.method == 'OPTIONS':
         response = app.make_default_options_response()
     else:
-
         try:
-            conexao = mysql.connector.connect(host='localhost', database='cadastro', user='root', password='')
-            if conexao.is_connected():
-                cursor = conexao.cursor()
+            Consulta = ClassePrincipal()
 
-            senha = request.json['senha']
-            email = request.json['email']
+            Consulta.senha = request.json['senha']
+            Consulta.email = request.json['email']
 
-            cursor.execute('SELECT senha from pessoas where email = %s', (email,))
+            Consulta.Executar('SELECT senha from pessoas where email = %s',(Consulta.email,))
 
             # Serve para filtrar o dado consultado do database
-            resposta_consulta = str(cursor.fetchone())
-            filtro1 = Filtro()
-            filtro1.Simplificar(resposta_consulta)
-            verificando = filtro1.valor
+            verificando = Consulta.valor
 
-            if str(senha) == verificando:
-                # cursor.execute('SELECT nome from pessoas where email = %s', (email,))
-                # resposta_consulta = str(cursor.fetchone())
-                # filtro1.Simplificar(resposta_consulta)
-                # resposta = filtro1.valor
+            if str(Consulta.senha) == verificando:
                 resposta = "ACEITO"
 
             else:
@@ -52,7 +42,7 @@ def login():
 
 
         response = jsonify({'resultado': resposta})
-
+        Consulta.Encerrar()
     return response, 200
 
 @app.route('/perfil', methods=['POST'])
@@ -61,36 +51,28 @@ def perfil():
     if request.method == 'OPTIONS':
         response = app.make_default_options_response()
     else:
-
         try:
+            Consulta = ClassePrincipal()
 
-            conexao = mysql.connector.connect(host='localhost', database='cadastro', user='root', password='')
-            if conexao.is_connected():
-                cursor = conexao.cursor()
-            senha = request.json['senha']
-            email = request.json['email']
+            Consulta.senha = request.json['senha']
+            Consulta.email = request.json['email']
 
-            cursor.execute('SELECT senha from pessoas where email = %s', (email,))
+            Consulta.Executar('SELECT senha from pessoas where email = %s', (Consulta.email,))
 
             # Serve para filtrar o dado consultado do database
-            resposta_consulta = str(cursor.fetchone())
-            filtro1 = Filtro()
-            filtro1.Simplificar(resposta_consulta)
-            verificando = filtro1.valor
+            verificando = Consulta.valor
 
-            if str(senha) == verificando:
-                cursor.execute('SELECT nome from pessoas where email = %s', (email,))
-                resposta_consulta = str(cursor.fetchone())
-                filtro1.Simplificar(resposta_consulta)
-                nome = filtro1.valor
+            if str(Consulta.senha) == verificando:
 
-                cursor.execute('SELECT data_nascimento from pessoas where email = %s', (email,))
-                resposta_consulta = str(cursor.fetchone())
-                filtro1.Simplificar(resposta_consulta)
-                data_nasc = filtro1.valor
+                Consulta.Executar('SELECT nome from pessoas where email = %s', (Consulta.email,))
+                Consulta.nome = Consulta.valor
 
-                data_nasc = str(data_nasc.replace('datetime.date', ''))
-                data_nasc = data_nasc.replace(' ', '-')
+                Consulta.Executar('SELECT data_nascimento from pessoas where email = %s', (Consulta.email,))
+
+                Consulta.data_nasc = Consulta.valor
+
+                Consulta.data_nasc = str(Consulta.data_nasc.replace('datetime.date', ''))
+                Consulta.data_nasc = Consulta.data_nasc.replace(' ', '-')
 
                 resposta = "Aceito"
 
@@ -105,7 +87,8 @@ def perfil():
 
 
 
-    response = jsonify({'nome': nome, 'data_nasc': data_nasc, 'resultado': resposta})
+    response = jsonify({'nome': Consulta.nome, 'data_nasc': Consulta.data_nasc, 'resultado': resposta})
+    Consulta.Encerrar()
     return response, 200
 
 
@@ -118,18 +101,17 @@ def cadastro():
     else:
 
         try:
-            conexao = mysql.connector.connect(host='localhost', database='cadastro', user='root', password='')
-
+            Consulta = ClassePrincipal()
 
             try:
                 resposta = "NEGADO"
-                cursor = conexao.cursor()
-                senha = request.json['senha']
-                senha = str(senha)
-                email = request.json['email']
-                email = str(email)
-                nome = request.json['nome']
-                nome = str(nome)
+
+                Consulta.senha = str(request.json['senha'])
+
+                Consulta.email = str(request.json['email'])
+
+                Consulta.nome = str(request.json['nome'])
+
                 data_nascimento = request.json['nascimento']
                 caracteres = str(data_nascimento)
                 ano = ''
@@ -144,17 +126,15 @@ def cadastro():
                 if ((int(ano)) < (int(data_atual[0])) - 18 ):
                     data_nascimento = datetime.strptime(data_nascimento, "%Y-%m-%d")
                     try:
-                        cursor.execute(
-                            'INSERT INTO pessoas(email, nome, data_nascimento, senha) VALUES (%s, %s, %s, %s);',
-                            (email, nome, data_nascimento, senha))
+                        Consulta.Executar('INSERT INTO pessoas(email, nome, data_nascimento, senha) VALUES (%s, %s, %s, %s);',
+                            (Consulta.email, Consulta.nome, data_nascimento, Consulta.senha))
 
-                        conexao.commit()
+                        Consulta.conexao.commit()
                         resposta = "CADASTRADO"
 
 
                     except Exception as er:
                         print("Não cadastrado")
-
 
             except Exception as er:
                 print("Erro json")
@@ -163,6 +143,7 @@ def cadastro():
 
 
         response = jsonify({'resultado': resposta})
+        Consulta.Encerrar()
 
         return response, 200
 
