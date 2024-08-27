@@ -92,6 +92,13 @@ def perfil():
     return response, 200
 
 
+@app.route('/editar', methods=['POST'])
+def editar():
+    if request.method == 'OPTIONS':
+        response = app.make_default_options_response()
+    else:
+        print('editar')
+
 @app.route('/cadastro', methods=['POST'])
 
 def cadastro():

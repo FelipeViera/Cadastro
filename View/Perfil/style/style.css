@@ -1,3 +1,7 @@
+body{
+    margin: 0px;
+}
+
 main {
     margin-top: 25vh;
     display: grid;
@@ -7,30 +11,61 @@ main {
 
 #Perfil{
     display: grid;
-    place-items: center;
     width: 20vw;
-    text-align: center;
-    background-color: rgb(56, 56, 56);
+    background-color: #2e2c2c;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    padding-right: 20px;
+    padding-left: 20px;
+    
+}
+
+img{
+    height: 100px;
+    padding: 10px;
+    place-self: center;
+}
+
+
+
+h3{
+    
+    margin-top: 0px;
+    color:white;
+    text-align: left;
+}
+
+button{
     border-radius: 20px;
     
 }
 
-h1{
-    color:white;
+footer{
+    margin-top: 10vh;
+    background-color: #2e2c2c;
+    height: 20vh;
+    text-align: center;
+    padding-top: 3.5vh;
+    font-size: 10pt;
+   font-family: 'Courier New', Courier, monospace;
+
 }
-h3{
-    margin-top: 0px;
-    color:white;
+
+.creditos{
+    color: white;
+    margin-bottom: 1vh;
 }
+
+
 @media screen and (max-width: 1000px){
 
     #Perfil{
         display: grid;
         place-items: center;
         width: 60vh;
-        text-align: center;
-        background-color: rgb(56, 56, 56);
         border-radius: 20px;
+        margin-bottom: 20px;
         
     }
 }

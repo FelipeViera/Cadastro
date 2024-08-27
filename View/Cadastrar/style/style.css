@@ -1,7 +1,7 @@
 
 
 main {
-    margin-top: 25vh;
+    margin-top: 10vh;
     display: grid;
     place-items: center;
 }
@@ -10,49 +10,80 @@ main {
 #botoes{
     display: grid;
     place-items: center;
-    height: 60vh;
     width: 20vw;
-    background-color: rgb(56, 56, 56);
+    background-color: #2e2c2c;
     border-radius: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    padding-left: 20px;
+    padding-right: 20px;
+
     
 }
 
 h1{
     color:white;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 25pt;
+    height: 5px;
+    margin-top: 25px;
+    margin-bottom: 40px;
 }
 
 .botao{
     background-color: transparent;
-    border-radius: 5px;
+    border-style:solid;
+    border-radius: 6px;
     color:white;
+    border-color: #949292;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12pt;
+    height: 24px;
+    margin-top: 20px;
 }
 
 #datas{
-    width: 29vh;
+   
     font-size: 12pt;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+input{
+    width: 200px;
 }
 
 button {
     border-radius: 5px;
-    background-color: rgb(64, 151, 244);
+    border-radius: 20px;
+    background-color: #a4a4a4;
+    border-color: #949292;
     color: white;
     height: 40px;
-    font-size: 20pt;
+    font-size: 15pt;
+    font-family: 'Courier New', Courier, monospace;
+    margin-top: 15px;
+}
+#btn-logar{
+    background-color: transparent;
+    margin-bottom: 20px;
+}
+a{
+    text-decoration: none;
+    color: white;
 }
 
-@media screen and (max-width: 1000px){
+@media screen and (max-width: 1200px){
 
     #botoes{
         display: grid;
         place-items: center;
-        height: 70vh;
         width: 40vh;
-        background-color: rgb(56, 56, 56);
+        
         border-radius: 20px;
         
     }
     
-    #datas{
-        width: 30vh;
+    h1{
+        font-size: 20pt;
     }
+    
 }

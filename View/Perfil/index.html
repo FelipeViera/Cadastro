@@ -5,17 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
     <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/painel.style.css">
 </head>
 <body>
     <main>
         <div id="Perfil">
-            <h1 id="nome"> Nome_User </h1>
+            <img src="assets/user.png">
+            
+            <h3 id="nome"> Nome_User </h3>
             <h3 id="email"> E-mail</h3>
             <h3 id="data_nasc"> Data de Nascimento</h3>
             
-
         </div>
+        <button onclick="Excluir()"> Excluir Perfil </button>
+        <div id="painel_excluir">
+            <p>Tem certeza?</p>
+            <div id="bt">
+                <button>Confirmar</button>
+                <button>Cancelar</button>
+            </div>
+        </div>
+        
     </main>
+    <footer>
+        <p style="color: white;">Créditos:</p>
+        <P > <a style="text-decoration: none; color: white;"href="https://www.flaticon.com/br/icones-gratis/do-utilizador" title="do utilizador ícones">Do utilizador ícones criados por Becris - Flaticon</a></P>
+       
+    </footer>
     <script src="src/index.js"></script>
 </body>
 </html>

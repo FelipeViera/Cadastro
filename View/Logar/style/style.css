@@ -1,5 +1,6 @@
+
 main {
-    margin-top: 25vh;
+    margin-top: 15vh;
     display: grid;
     place-items: center;
 }
@@ -10,44 +11,74 @@ main {
     place-items: center;
     height: 60vh;
     width: 20vw;
-    background-color: rgb(56, 56, 56);
-    border-radius: 20px;
+    background-color: #2e2c2c;
+    border-radius: 35px;
     
 }
 
 h1{
     color:white;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 33pt;
+    height: 10px;
+    margin-top: 10px;
+    margin-bottom: 40px;
+    
+
     
 }
 
 .botao{
     background-color: transparent;
-    border-radius: 5px;
+    border-style:solid;
+    border-radius: 6px;
     color:white;
+    border-color: #949292;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12pt;
+    height: 24px;
+    margin-top: 0px;
+    
+}
+
+#btn-logar{
+    margin-top: 10px;
+    width: 120px;
+    
+    background-color: #a4a4a4;
+    
+}
+#btn-cadastro{
+    background-color: transparent;
+    margin-bottom: 20px;
 }
 
 button {
-    border-radius: 5px;
-    background-color: rgb(64, 151, 244);
+    border-radius: 20px;
     color: white;
     height: 40px;
     font-size: 20pt;
+    border-color: #949292;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 a{
     color:white; 
     text-decoration: none;
+    font-family: 'Courier New', Courier, monospace;
 }
 
-@media screen and (max-width: 1000px){
+@media screen and (max-width: 1200px){
 
     #botoes{
         display: grid;
         place-items: center;
         height: 70vh;
         width: 40vh;
-        background-color: rgb(56, 56, 56);
         border-radius: 20px;
+        padding-right: 20px;
+        padding-left: 20px;
+        
         
     }
     

@@ -72,3 +72,9 @@ function Exibir(data, loginObject){
     
   }
 }
+
+
+function Excluir(){
+  var painel = document.getElementById("painel_excluir")
+  painel.style.display = 'grid'
+}
