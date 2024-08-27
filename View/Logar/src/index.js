@@ -1,10 +1,36 @@
 function Logar(){
     var email = document.getElementsByTagName('input')[0]
     var senha = document.getElementsByTagName('input')[1]
+    var alerta = document.getElementsByTagName('p')[0]
     var c_email = email.value.length
     var c_senha = senha.value.length
-    if (c_email > 0 && c_senha > 0){
+    var verificacao = [2]
+
+    if (c_email > 0){
+      verificacao[0] = true
+    }
+
+    else{
+      verificacao[0] = false
+      
+    }
+
+    if (c_senha > 0){
+      verificacao[1] = true
+    }
+
+    else {
+      verificacao[1] = false
+    }
+
+    if (verificacao[0] && verificacao[1]){
         Solicitacao(String(senha.value), String(email.value))
+    }
+    else{
+      senha.style.borderColor = "red"
+      email.style.borderColor = "red"
+      alerta.style.display ="block"
+
     }
     
 }
