@@ -19,10 +19,13 @@
         </div>
         <button onclick="Excluir()"> Excluir Perfil </button>
         <div id="painel_excluir">
-            <p>Tem certeza?</p>
+            <strong>
+                <p>Excluir Perfil</p>
+            </strong>
+            <input id="caixa-senha" placeholder="Digite sua senha">
             <div id="bt">
-                <button>Confirmar</button>
-                <button>Cancelar</button>
+                <button id="btn-ok" onclick="Confirmar()">Confirmar</button>
+                <button id="btn-cancelar" onclick="Cancelar()">Cancelar</button>
             </div>
         </div>
         

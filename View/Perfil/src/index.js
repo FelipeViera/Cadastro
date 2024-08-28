@@ -78,3 +78,44 @@ function Excluir(){
   var painel = document.getElementById("painel_excluir")
   painel.style.display = 'grid'
 }
+
+function Cancelar(){
+  var painel = document.getElementById("painel_excluir")
+  painel.style.display = 'none'
+}
+
+async function Confirmar(){
+  var senha = document.getElementById('caixa-senha').value
+  const getLogin = localStorage.getItem("login")
+  const loginObject = JSON.parse(getLogin)
+
+
+  link = 'http://localhost:5000/excluir'
+
+    fetch('http://localhost:5000/excluir', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ senha: String(senha), email: String(loginObject.email)}), // Substitua o valor conforme necessário
+      })
+      
+      .then(response => response.json())
+      .then(data => {
+        console.log(data.resultado); perfilExcluido(data.resultado);
+    })
+      .catch((error) => console.error('Erro:', error));;
+}
+
+function perfilExcluido(valor){
+  var texto = document.getElementsByTagName('p')[0]
+  texto.innerText = valor
+  if (texto.innerText == "Perfil Excluido"){
+    setTimeout(function() {
+      alert("A página será recarregada em 5 segundos.");
+      window.location.reload();
+    }, 5000);
+  }
+  
+
+}

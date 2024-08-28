@@ -92,12 +92,31 @@ def perfil():
     return response, 200
 
 
-@app.route('/editar', methods=['POST'])
-def editar():
+@app.route('/excluir', methods=['POST'])
+def excluir():
     if request.method == 'OPTIONS':
         response = app.make_default_options_response()
     else:
-        print('editar')
+
+        try:
+            consulta = ClassePrincipal()
+            consulta.senha = request.json['senha'] #senha digitada
+            consulta.email = request.json['email']
+            consulta.Executar('SELECT senha from pessoas where email = %s', (consulta.email,))
+            if (consulta.senha == consulta.valor):
+                consulta.Executar('DELETE FROM pessoas where email = %s', (consulta.email,))
+                consulta.conexao.commit()
+                print('Perfil Excluido')
+                response = jsonify({'resultado': "Perfil Excluido"})
+            else:
+                print('Senha incorreta')
+                response = jsonify({'resultado': "Senha Incorreta"})
+        except:
+            response = jsonify({'resultado': "Erro"})
+            print('erro')
+
+
+    return response, 200
 
 @app.route('/cadastro', methods=['POST'])
 

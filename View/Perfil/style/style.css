@@ -38,6 +38,11 @@ h3{
 
 button{
     border-radius: 20px;
+    background-color: black;
+    font-family:'Courier New', Courier, monospace;
+    color: white;
+    font-size: 12pt;
+    padding: 10px;
     
 }
 

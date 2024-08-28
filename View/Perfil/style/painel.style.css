@@ -1,15 +1,48 @@
 #painel_excluir{
     width: 20vw;
-    height: 20vw;
-    position: fixed;
-    background-color: rgb(164, 164, 164);
+    position: absolute;
+    background-color: #403b3b;
     place-items: center;
     text-align: center;
     border-radius: 20px;
-    font-size: 25pt;
+    font-size: 20pt;
     display: none;
+    border-color: #949292;
+    border-style: solid;
+    padding-bottom: 20px;
+    padding-right: 15px;
+    padding-left: 15px;
 }
 
 #bt {
     display: flex;
+}
+p{
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#caixa-senha{
+    background-color: transparent;
+    border-style:solid;
+    border-radius: 6px;
+    color:white;
+    border-color: #949292;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12pt;
+    height: 24px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+@media screen and (max-width: 1000px){
+
+    #painel_excluir{
+        display: grid;
+        place-items: center;
+        width: 40vw;
+        border-radius: 20px;
+        margin-bottom: 20px;
+        
+    }
 }
