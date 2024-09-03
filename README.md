@@ -11,14 +11,15 @@ cadastro eficiente de usuários.
 
 <h2>Status do Projeto</h2>
 
-<p> Em desenvolvimento </p>
+<p> Finalizado </p>
 
 <h2> Funcionalidades </h2>
 
 <ul>
-<li> Cadastrar usuários</li>
+<li> Cadastrar-se</li>
 <li> Logar em sua conta </li>
-<li> Editar informações cadastrais (em desenvolvimento) </li>
+<li> Exibir os dados </li>
+<li> Excluir conta  </li>
 </ul>
 
 <h2> Diagrama UML </h2>
